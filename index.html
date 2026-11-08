@@ -100,7 +100,7 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 /* ============ الرئيسية ============ */
 .hero{display:block;padding:0}
 .banner{display:block;overflow:hidden;background:var(--surface)}
-.banner img{width:100%;height:auto;aspect-ratio:1252/536;max-height:640px;object-fit:cover;transition:transform .6s var(--ease)}
+.banner img{width:100%;height:auto;aspect-ratio:1600/700;max-height:640px;object-fit:cover;object-position:center 58%;transition:transform .6s var(--ease)}
 .banner:hover img{transform:scale(1.02)}
 
 .rc-band{background:#F6F4EE;padding-block:clamp(28px,4vw,48px);margin-bottom:var(--sec)}
@@ -500,7 +500,7 @@ function home(){
   const dist=P.filter(p=>p.cat==='dist'&&p.pcs).concat(P.filter(p=>p.name==='ربع تولة فاخرة'||p.name==='عطر 8 مل')).slice(0,6);
   return `
   <section class="hero rise" aria-labelledby="h1">
-    <a class="banner" href="#/p/${arina.id}" aria-label="عطر أرينا"><img src="https://media.zid.store/cdn-cgi/image/w=1600,q=85,f=auto/${BASE}3ee506f9-3e4c-4a85-be5a-3893218e5361.jpg" alt="عطر أرينا 149 ريال بدل 230 شامل الشحن والضريبة" width="1252" height="536"></a>
+    <a class="banner" href="#/shop?cat=perfume" aria-label="تسوّق عطور رساس"><img src="img/p1062769.jpg" alt="" width="1600" height="900"></a>
     <h1 id="h1" class="sr">عطور فرنسية وشرقية منذ 2008</h1>
   </section>
 
@@ -508,7 +508,7 @@ function home(){
     <div class="rcats">${[['perfume','عطور','سوفاج'],['incense','البخور والعود','مبخرة اعواد العود'],['dist','توزيعات','ربع تولة فاخرة'],['air','عطور جو ومفارش','معطر جو قيرل'],['diff','فواحات أعواد','فواحة سيراميك'],['care','منتجات عناية','5 كريمات لليدين']].map(([k,n,pn])=>`<a class="rcat" href="#/shop?cat=${k}"><span class="c"><img src="${IMG(P.find(p=>p.name===pn).img,400)}" alt="" loading="lazy"></span><b>${n}</b></a>`).join('')}</div></div></section>
 
   <section class="wrap about" aria-labelledby="abh">
-    <div class="ph"><img src="${IMG(P.find(p=>p.name==='مسك المدينة').img,1100)}" alt="عطر مسك المدينة من رساس" width="1100" height="956" loading="lazy"></div>
+    <div class="ph"><img src="img/14.jpg" alt="" width="1280" height="1600" loading="lazy"></div>
     <div><h2 id="abh">ثمانية عشر عامًا في صناعة الرائحة</h2>
       <p>نشأت رساس في المملكة العربية السعودية عام 2008، لتقدّم عطورًا فرنسية وشرقية بأسلوب دافئ وأنيق، وبخورًا وعودًا من أجود الأنواع.</p>
       <a class="more" href="#/shop?cat=perfume">تسوّق عطور رساس <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a></div>
@@ -519,8 +519,8 @@ function home(){
     <div class="tabpanel" id="tabPanel" role="tabpanel" aria-live="polite" aria-labelledby="tab-special">${tabGrid('special')}</div></section>
 
   <div class="wrap"><div class="bigcats">
-    <a class="bigcat" href="#/shop?cat=perfume"><div class="inst"><h3>قسّمها على 5 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div><div class="bc-media"><img src="${IMG(P.find(p=>p.name==='العود الملكي').img,1000)}" alt="" loading="lazy"><div class="bc-t"><h3>العطور</h3><p>${cnt('perfume')} منتجًا بين خاص وكلاسيك</p><span class="btn btn-ink">تسوّق العطور</span></div></div></a>
-    <a class="bigcat" href="#/shop?cat=incense"><div class="bc-media"><img src="${IMG(P.find(p=>p.name==='عود كمبودي').img,1000)}" alt="" loading="lazy"><div class="bc-t"><h3>البخور والعود</h3><p>${cnt('incense')} منتجات من العود والمعمول والبخور</p><span class="btn btn-ink">تسوّق البخور</span></div></div></a>
+    <a class="bigcat" href="#/shop?cat=perfume"><div class="inst"><h3>قسّمها على 5 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div><div class="bc-media"><img src="img/post3.jpg" alt="" loading="lazy"><div class="bc-t"><h3>العطور</h3><p>${cnt('perfume')} منتجًا بين خاص وكلاسيك</p><span class="btn btn-ink">تسوّق العطور</span></div></div></a>
+    <a class="bigcat" href="#/shop?cat=incense"><div class="bc-media"><img src="img/post1.jpg" alt="" loading="lazy"><div class="bc-t"><h3>البخور والعود</h3><p>${cnt('incense')} منتجات من العود والمعمول والبخور</p><span class="btn btn-ink">تسوّق البخور</span></div></div></a>
   </div></div>
 
   
