@@ -334,11 +334,11 @@ footer .legal{margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255
   .tabbar{display:none}
   .menu-btn{display:none}
   .top-row{flex-wrap:nowrap;gap:12px}
-  .desk-nav{display:flex;gap:4px;margin-inline-start:16px}
-  .desk-nav a{height:36px;padding:0 12px;display:inline-flex;align-items:center;border-radius:var(--r-btn);font-size:13px;font-weight:700;color:#4b5563;transition:background-color var(--t),color var(--t)}
+  .desk-nav{display:flex;gap:2px;margin-inline-start:8px;min-width:0}
+  .desk-nav a{height:36px;padding:0 10px;white-space:nowrap;display:inline-flex;align-items:center;border-radius:var(--r-btn);font-size:13px;font-weight:700;color:#4b5563;transition:background-color var(--t),color var(--t)}
   .desk-nav a:hover,.desk-nav a[aria-current]{background:var(--surface);color:var(--ink)}
   .top-row .spacer{display:none}
-  .search{order:0;flex:0 0 320px;margin-inline-start:auto}
+  .search{order:0;flex:0 1 300px;min-width:160px;margin-inline-start:auto}
   .search input{height:43px}
   .deskonly{display:grid}
     .bigcat{min-height:460px}
@@ -422,12 +422,13 @@ const LOGO='9dd5dadb-1bb2-4cc0-990a-01734d9913b1.png';
 const CATS=[
  {k:'perfume',n:'عطور',img:'413f204c-e14d-44bb-a6ae-0d7eba42d5e6.png'},
  {k:'incense',n:'البخور والعود',img:'1f7badce-a459-49f5-b423-59ed59361900.png'},
- {k:'dist',n:'توزيعات',img:'9e5fba2f-2755-4c5b-b179-f3d94237f7ee.png'},
+ {k:'diff',n:'فواحات العود',img:'9e0d8955-1945-499e-b915-69943aebbcee.png'},
  {k:'air',n:'عطور جو ومفارش',img:'1e36e351-e99f-4504-ae1e-6666f26aeca7.png'},
- {k:'diff',n:'فواحات أعواد',img:'9e0d8955-1945-499e-b915-69943aebbcee.png'},
+ {k:'dist',n:'توزيعات',img:'9e5fba2f-2755-4c5b-b179-f3d94237f7ee.png'},
+ {k:'royal',n:'هدايا مباخر ملكية',img:'a24d71a3-9fa6-43ff-ba9e-b712bc742342.jpeg'},
  {k:'care',n:'منتجات عناية',img:'c1050dc1-7ba7-4497-80d0-afa0afda35a8.png'}
 ];
-const COLS={special:'عطور خاصة',feat:'عطور مميزة',c100:'كلاسيك 100 مل',c50:'كلاسيك 50 مل',inc:'البخور والعود',dist:'توزيعات',air:'عطور جو ومفارش',diff:'فواحات أعواد',care:'منتجات عناية'};
+const COLS={special:'عطور خاصة',feat:'عطور مميزة',c100:'كلاسيك 100 مل',c50:'كلاسيك 50 مل',inc:'البخور والعود',dist:'توزيعات',air:'عطور جو ومفارش',diff:'فواحات أعواد',care:'منتجات عناية',royal:'هدايا مباخر ملكية'};
 const P=[];
 const add=(col,cat,rows,extra={})=>rows.forEach(r=>{const [n,pr,img,o]=r;P.push(Object.assign({id:P.length+1,name:n,price:pr,img,col,cat},extra,o||{}))});
 add('special','perfume',[
@@ -450,6 +451,8 @@ add('diff','diff',[
  ['فيرجرانس',110,'80823463-24c3-4bd1-8bfe-6c31256f0005.jpeg'],['فواحة اروما دفيوزر أبيض',85,'e7fa9c3a-8366-4d6b-ac1c-f76b1bd8b0ea.jpg'],['فواحة اروما دفيوزر أسود',85,'0183fc65-ea5e-4e55-9bb9-4b308077ce14.jpg'],['زيت فواحة 70 مل',40.25,'2d1d5599-f472-476f-a553-924ab80f06f0.jpeg'],['فواحة سيراميك',98,'31999f5c-7b4e-4ad6-ac35-1185e27cfefe.jpg'],['فواحة أعواد ورود (1)',115,'b4a402b2-9422-4f18-91bb-b049e0b03228.jpeg'],['فواحة تعليق سيراميك',28.75,'0732c208-696d-4349-be43-741cba9dbdc9.jpg'],['فواحة سيارة',69,'38dd1866-5814-41d0-a059-04a0e5fa48d4.jpeg'],['فواحة أعواد ورود (2)',115,'b78ad718-252d-4c22-98d8-7752b4f0d245.jpg']]);
 add('care','care',[
  ['5 كريمات لليدين',45,'15c9041b-f544-40e9-b757-cb079431f2f9.jpg']]);
+add('royal','royal',[
+ ['مبخرة ملكية مع ربع تولة',180,'a24d71a3-9fa6-43ff-ba9e-b712bc742342.jpeg'],['مبخرة ملكية',172.5,'d27754d3-1a8c-4b49-b5e8-b9d7d1723dc9.jpeg']]);
 const scentOf=n=>/عنبر/.test(n)?'عنبر':/مسك/.test(n)?'مسك':/ورد|روز/.test(n)?'ورد':/عود/.test(n)?'عود':'';
 P.forEach(p=>{p.scent=scentOf(p.name)});
 
@@ -616,8 +619,7 @@ function route(){
   else if(path==='/cart'){app.innerHTML=cartPage();tab='cart'}
   else app.innerHTML=home();
   $$('[data-tab]').forEach(a=>a.toggleAttribute('aria-current',a.dataset.tab===tab));document.body.classList.toggle('is-home',path==='/'||(path!=='/shop'&&!path.startsWith('/p/')&&path!=='/cart'));
-  $('#deskNav').innerHTML=CATS.slice(0,3).map(c=>`<a href="#/shop?cat=${c.k}" ${q.cat===c.k&&path==='/shop'?'aria-current="page"':''}>${c.n}</a>`).join('')+'<a href="#scents">حسب الرائحة</a>';
-  $('#deskNav a:last-child').addEventListener('click',e=>{e.preventDefault();if(location.hash.slice(1,2)==='/'&&(location.hash.slice(1)||'/')!=='/')location.hash='#/';setTimeout(()=>$('#scents')?.scrollIntoView({behavior:'smooth'}),60)});
+  $('#deskNav').innerHTML=CATS.slice(0,6).map(c=>`<a href="#/shop?cat=${c.k}" ${q.cat===c.k&&path==='/shop'?'aria-current="page"':''}>${c.n}</a>`).join('');
   if(!location.hash.includes('#finder'))scrollTo(0,0);
   $('#drawer').classList.remove('open');
 }
