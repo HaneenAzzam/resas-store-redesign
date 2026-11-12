@@ -143,8 +143,26 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .pc:hover .ph img{transform:scale(1.05)}
 .pc .tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;background:#ECE9E2;color:var(--ink);font-size:12px;padding:3px 10px;border-radius:4px}
 .pc .tag.sale{background:var(--danger);color:#fff}
-.head .sub{margin-top:6px;font-size:13px;color:var(--muted);max-width:46ch}
-.head>div{min-width:0;flex:1}
+.saleblk{display:grid;gap:12px}
+.salepanel{background:var(--ink);color:#fff;border-radius:var(--r-panel);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.salepanel h2{display:flex;flex-direction:column;line-height:1.1;max-width:none}
+.salepanel h2 small{font-size:clamp(18px,2vw,22px);font-weight:700;color:#F3EFE7}
+.salepanel h2 b{font-size:clamp(56px,7vw,84px);font-weight:800;color:#E2C98B;letter-spacing:-.02em}
+.salepanel p{font-size:14px;color:#F3EFE7;max-width:34ch}
+.salepanel .btn{align-self:flex-start;margin-top:6px}
+.salegrid{display:grid;gap:12px}
+.srow{display:grid;grid-template-columns:104px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:12px;transition:border-color var(--t)}
+.srow:hover{border-color:var(--line-h)}
+.srow .ph{aspect-ratio:1;border-radius:var(--r-field);overflow:hidden;background:var(--surface);display:block}
+.srow .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease)}
+.srow:hover .ph img{transform:scale(1.06)}
+.srow h3{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+.srow h3 a:hover{color:var(--gold-d)}
+.srow .price{margin-bottom:10px}
+.srow .pill{background:var(--danger);color:#fff;font-size:12px;font-weight:700;border-radius:var(--r-pill);padding:1px 10px}
+.srow .btn{width:auto;min-width:140px}
+@media(min-width:768px){.salegrid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.saleblk{grid-template-columns:320px 1fr;gap:16px}.srow{grid-template-columns:120px 1fr}}
 .pc .tag.gold{inset-inline-start:auto;inset-inline-end:10px;background:var(--gold);color:var(--ink);font-weight:700}
 .pc h3{font-size:14px;font-weight:400;line-height:1.5;letter-spacing:.01em;min-height:3em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .pc h3 a:hover{color:var(--gold-d)}
@@ -466,6 +484,13 @@ function cardClean(p){
   <div class="price"><b>${fmt(p.price)}</b>${p.old?`<s>${fmt(p.old)}</s>`:''}</div>
   ${p.rating?`<div class="stars-row" aria-label="تقييم ${p.rating} من 5">★★★★★<small>(${p.reviews})</small></div>`:p.reviews?`<div class="stars-row"><small>(${p.reviews} تقييمات)</small></div>`:''}</article>`;
 }
+function saleRow(p){
+  const d=disc(p);
+  const act=p.opts?`<a class="btn btn-sm btn-ink" href="#/p/${p.id}">اختر الخيارات</a>`:`<button class="btn btn-sm btn-gold" data-add="${p.id}">أضف إلى السلة</button>`;
+  return `<article class="srow"><a class="ph" href="#/p/${p.id}" aria-label="${esc(p.name)}">${imgTag(p,300)}</a>
+  <div class="in"><h3><a href="#/p/${p.id}">${esc(p.name)}</a></h3>
+  <div class="price"><b>${fmt(p.price)}</b><s>${fmt(p.old)}</s><span class="pill">وفّر ${d}%</span></div>${act}</div></article>`;
+}
 const skel=n=>Array.from({length:n},()=>'<div class="sk" aria-hidden="true"><i></i><i></i><i></i><i></i></div>').join('');
 
 /* ============ الرئيسية: ترتيب مستوحى من المرجع ============ */
@@ -491,8 +516,10 @@ function home(){
   <section class="blk wrap" aria-labelledby="trh"><div class="head"><h2 id="trh">الأعلى تقييمًا</h2><a href="#/shop?cat=perfume">عرض كل المنتجات ←</a></div>
     <div class="pgrid">${[['ليدي عنبر',4],['ناتشورال عنبر',4],['بخور رساس',3],['ارينا',2]].map(([n,c])=>{const p=P.find(x=>x.name===n);return cardClean(Object.assign({},p,{reviews:c,oneplus:true}))}).join('')}</div></section>
 
-  <section class="blk wrap" aria-labelledby="svh"><div class="head"><div><h2 id="svh">وفّر حتى 70%</h2><p class="sub">تخفيضات على 4 منتجات مختارة من رساس، والأسعار شاملة الضريبة.</p></div><a href="#/shop?sort=disc">عرض كل المنتجات ←</a></div>
-    <div class="pgrid">${['5 كريمات لليدين','مجموعة سجى | Saja perfumes','ربع تولة','عطر فرنسي 12 مل'].map(n=>cardClean(P.find(x=>x.name===n))).join('')}</div></section>
+  <section class="blk wrap" aria-labelledby="svh"><div class="saleblk">
+    <div class="salepanel"><h2 id="svh"><small>وفّر حتى</small><b>70%</b></h2><p>تخفيضات على 4 منتجات مختارة من رساس، والأسعار شاملة الضريبة.</p><a class="btn btn-gold" href="#/shop?sort=disc">عرض كل المنتجات</a></div>
+    <div class="salegrid">${['5 كريمات لليدين','مجموعة سجى | Saja perfumes','ربع تولة','عطر فرنسي 12 مل'].map(n=>saleRow(P.find(x=>x.name===n))).join('')}</div>
+  </div></section>
 
 
 
