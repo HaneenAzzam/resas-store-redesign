@@ -143,6 +143,7 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .pc:hover .ph img{transform:scale(1.05)}
 .pc .tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;background:#ECE9E2;color:var(--ink);font-size:12px;padding:3px 10px;border-radius:4px}
 .pc .tag.sale{background:var(--danger);color:#fff}
+.pc .tag.gold{inset-inline-start:auto;inset-inline-end:10px;background:var(--gold);color:var(--ink);font-weight:700}
 .pc h3{font-size:14px;font-weight:400;line-height:1.5;letter-spacing:.01em;min-height:3em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .pc h3 a:hover{color:var(--gold-d)}
 .pc .price{justify-content:center}
@@ -404,7 +405,7 @@ const add=(col,cat,rows,extra={})=>rows.forEach(r=>{const [n,pr,img,o]=r;P.push(
 add('special','perfume',[
  ['ليدي روز',207,'7964b07d-82a5-49ae-94d9-27a8ce1b5364.jpeg'],['العود الملكي',287.5,'9e29ccd2-79c5-4a6f-817f-f94c19acc616.jpg'],['ليذر',230,'9f5f127f-2c9c-4e28-8ffb-5dd3240254b9.jpeg'],['عنبر عود',260,'bdca83c2-3fcf-4ad2-a89a-879141c7e86d.jpg'],['ليدي عنبر',239,'ae0cd722-6462-47a3-96d0-ac22188a9f32.jpg'],['لاروزا',299,'6ea3fd1d-aee6-44d5-a229-70ebd8e50d4c.jpg'],['عنبر',260,'7f45bf7f-b2ae-4e43-a751-079cac07c99d.jpeg'],['مسك روز',160,'c85367db-582e-4f40-8547-9d5d21f905a3.jpeg'],['عنبر مسك',239,'a0999cfe-4525-49b4-818b-318cd700c5df.jpg'],['ناتشورال عنبر',225,'94736846-a84f-4b46-b140-b0d4f21ed080.jpg'],['عنبر قولد',249,'22ac58ac-43d6-449f-b62a-226e0359acfd.jpeg'],['باتشولي',207,'68034c4b-8e7e-4a12-a762-8d12ea45e2d9.jpg'],['بوكيت',225,'19038451-823d-454e-9f69-db3b8d7d0881.jpg'],['سيقار',260,'ba37e4dd-7cdb-48ce-81aa-d84304f52113.jpg'],['مسك المدينة',320,'d227b714-bf96-4d10-b8a0-519b70c57270.jpg']]);
 add('feat','perfume',[
- ['ارينا',149,'29a1040e-0066-45ec-8721-c282a5307bb9.jpg',{old:230,size:75,sku:'ARINA 75 ML',rating:5,reviews:2,notes:['الفلفل الوردي','زهرة البرتقال','الفانيليا','حبوب التونكا'],desc:'نفحات جذابة تنبض بالحيوية والثقة، تمنحك حضورًا قويًا ولمسة فخامة.'}],
+ ['ارينا',230,'29a1040e-0066-45ec-8721-c282a5307bb9.jpg',{size:75,sku:'ARINA 75 ML',rating:5,reviews:2,notes:['الفلفل الوردي','زهرة البرتقال','الفانيليا','حبوب التونكا'],desc:'نفحات جذابة تنبض بالحيوية والثقة، تمنحك حضورًا قويًا ولمسة فخامة.'}],
  ['عطر مسك',224.83,'eec9b1c6-2f4a-4ab9-8da0-834d8c53c119.jpg'],['عطر ورد مديني',224.83,'15ee5bbc-c82c-4aee-8cde-009c047ddf5e.jpg'],['سن سيت',230,'5f0e4572-c01a-4d0e-8637-ab882b992eb6.jpeg']]);
 add('c100','perfume',[
  ['لافي لانكوم','1ae71aa5-1269-438c-b169-a1d1b2bfeb9d.jpg'],['سوفاج','995e6258-0fb6-4bf5-9ad9-0b23287dd7b1.jpg'],['ابيوم نسائي','4ad36d51-d495-40c2-81ef-d25babb42cc1.jpg'],['بلاتينيوم رجالي','56f14b5b-8648-4d7d-a7bf-f5048843f6e2.jpg'],['افنتوس رجالي','da20dc66-91d5-46a2-8eef-bf2aa11073c0.jpg'],['Bloom','67ff54e6-6a1b-47a0-b0d4-cbbb7e83c64e.jpg'],['تندر','6488f04a-c932-49b5-9e6e-caae2bf4b520.jpg'],['COCO','03349494-ce9f-4556-8d4f-36f3a8098a1b.jpg'],['BLUE','cb72781c-be73-4604-8209-d859e1f79153.jpg'],['POWDER','5fe929d0-c20f-4712-b538-d92865fb8969.jpg'],['CLASSIC','0c45ecf3-b054-4c89-b936-2e1caf3cb2b5.jpg'],['PRIVATE','5b8ea08f-3fdc-4530-85a7-623bc9130b53.jpg'],['PURE','f4fd86b4-a34c-4b23-96ab-1a4206259d07.jpg'],['Velvet | شرقي للنساء','bc00925c-7bbb-41e6-ba70-9b6d2078ab79.jpg'],['Flora | فرنسي للنساء','28c53bf0-7ce7-4a1f-88ee-3fc252db2e55.jpg'],['Girl | فرنسي للنساء','cf885d3c-e5ee-4736-b8c3-d92eb2ef05cc.jpg'],['Victus | فرنسي للرجال','13560da6-3372-4030-90cc-9741231ca8a2.jpg'],['Tobacco | شرقي للجنسين','6ce90598-8b66-48d9-b471-88c2f212202b.jpg'],['White | للرجال','b8744dd6-0440-4b64-88ba-4b9a6255bba8.jpg'],['Libre | فرنسي للنساء','ed1608d5-67b3-4bf4-8d60-7777e3ff6d24.jpg']].map(([n,i])=>[n,149.5,i]),{size:100});
@@ -452,14 +453,14 @@ function card(p){
 
 function cardClean(p){
   const d=disc(p);
-  const tag=p.oos?'<span class="tag">غير متوفر</span>':d?`<span class="tag sale">خصم ${d}%</span>`:'';
+  const tag=p.oos?'<span class="tag">غير متوفر</span>':d?`<span class="tag sale">خصم ${d}%</span>`:p.oneplus?'<span class="tag gold">1+1 مجانًا</span>':'';
   const plus=p.oos?`<button class="plus" disabled aria-label="غير متوفر"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>`
    :p.opts?`<a class="plus" href="#/p/${p.id}" aria-label="اختر خيارات ${esc(p.name)}"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></a>`
    :`<button class="plus" data-add="${p.id}" aria-label="أضف ${esc(p.name)} إلى السلة"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>`;
   return `<article class="pc"><div class="pimg"><a class="ph" href="#/p/${p.id}" aria-label="${esc(p.name)}">${tag}${imgTag(p)}</a>${plus}</div>
   <h3><a href="#/p/${p.id}">${esc(p.name)}</a></h3>
   <div class="price"><b>${fmt(p.price)}</b>${p.old?`<s>${fmt(p.old)}</s>`:''}</div>
-  ${p.rating?`<div class="stars-row" aria-label="تقييم ${p.rating} من 5">★★★★★<small>(${p.reviews})</small></div>`:''}</article>`;
+  ${p.rating?`<div class="stars-row" aria-label="تقييم ${p.rating} من 5">★★★★★<small>(${p.reviews})</small></div>`:p.reviews?`<div class="stars-row"><small>(${p.reviews} تقييمات)</small></div>`:''}</article>`;
 }
 const skel=n=>Array.from({length:n},()=>'<div class="sk" aria-hidden="true"><i></i><i></i><i></i><i></i></div>').join('');
 
@@ -482,6 +483,10 @@ function home(){
   <section class="blk wrap" aria-labelledby="th"><div class="head"><h2 id="th">اختر من عطور رساس</h2><a href="#/shop?cat=perfume">عرض الكل ←</a></div>
     <div class="tabs" role="tablist" aria-label="مجموعات العطور">${TABS.map(([k,l],i)=>`<button class="chip" role="tab" id="tab-${k}" data-tab-k="${k}" aria-selected="${i==0}" tabindex="${i==0?0:-1}">${l}</button>`).join('')}</div>
     <div class="tabpanel" id="tabPanel" role="tabpanel" aria-live="polite" aria-labelledby="tab-special">${tabGrid('special')}</div></section>
+
+  <section class="blk wrap" aria-labelledby="trh"><div class="head"><h2 id="trh">الأعلى تقييمًا</h2><a href="#/shop?cat=perfume">عرض كل المنتجات ←</a></div>
+    <div class="pgrid">${[['ليدي عنبر',4],['ناتشورال عنبر',4],['بخور رساس',3],['ارينا',2]].map(([n,c])=>{const p=P.find(x=>x.name===n);return cardClean(Object.assign({},p,{reviews:c,oneplus:true}))}).join('')}</div></section>
+
 
   <section class="blk wrap" aria-labelledby="vh"><h2 id="vh" class="sr">التقسيط والتوصيل والاستبدال</h2>
     <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
