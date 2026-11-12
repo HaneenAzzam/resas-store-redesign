@@ -40,7 +40,7 @@ h2{font-size:clamp(20px,2.1vw,26px);line-height:1.4}
 section.blk{padding-block:var(--sec)}
 .head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:24px}
 @media(min-width:1024px){.head{margin-bottom:40px}}
-.head a{font-size:13px;font-weight:700;color:var(--gold-d);min-height:44px;display:inline-flex;align-items:center;gap:6px;transition:transform var(--t) var(--ease)}
+.head a{white-space:nowrap;font-size:13px;font-weight:700;color:var(--gold-d);min-height:44px;display:inline-flex;align-items:center;gap:6px;transition:transform var(--t) var(--ease)}
 .head a:hover{transform:translateX(-4px)}
 
 /* أزرار: 50 للأساسي، 44 داخل البطاقات، زاوية 8 */
@@ -143,6 +143,8 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .pc:hover .ph img{transform:scale(1.05)}
 .pc .tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;background:#ECE9E2;color:var(--ink);font-size:12px;padding:3px 10px;border-radius:4px}
 .pc .tag.sale{background:var(--danger);color:#fff}
+.head .sub{margin-top:6px;font-size:13px;color:var(--muted);max-width:46ch}
+.head>div{min-width:0;flex:1}
 .pc .tag.gold{inset-inline-start:auto;inset-inline-end:10px;background:var(--gold);color:var(--ink);font-weight:700}
 .pc h3{font-size:14px;font-weight:400;line-height:1.5;letter-spacing:.01em;min-height:3em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .pc h3 a:hover{color:var(--gold-d)}
@@ -399,7 +401,7 @@ const CATS=[
  {k:'royal',n:'هدايا مباخر ملكية',img:'a24d71a3-9fa6-43ff-ba9e-b712bc742342.jpeg'},
  {k:'care',n:'منتجات عناية',img:'c1050dc1-7ba7-4497-80d0-afa0afda35a8.png'}
 ];
-const COLS={special:'عطور خاصة',feat:'عطور مميزة',c100:'كلاسيك 100 مل',c50:'كلاسيك 50 مل',inc:'البخور والعود',dist:'توزيعات',air:'عطور جو ومفارش',diff:'فواحات أعواد',care:'منتجات عناية',royal:'هدايا مباخر ملكية'};
+const COLS={special:'عطور خاصة',feat:'عطور مميزة',c100:'كلاسيك 100 مل',c50:'كلاسيك 50 مل',inc:'البخور والعود',dist:'توزيعات',air:'عطور جو ومفارش',diff:'فواحات أعواد',care:'منتجات عناية',royal:'هدايا مباخر ملكية',sale:'عروض رساس'};
 const P=[];
 const add=(col,cat,rows,extra={})=>rows.forEach(r=>{const [n,pr,img,o]=r;P.push(Object.assign({id:P.length+1,name:n,price:pr,img,col,cat},extra,o||{}))});
 add('special','perfume',[
@@ -421,9 +423,11 @@ add('air','air',[
 add('diff','diff',[
  ['فيرجرانس',110,'80823463-24c3-4bd1-8bfe-6c31256f0005.jpeg'],['فواحة اروما دفيوزر أبيض',85,'e7fa9c3a-8366-4d6b-ac1c-f76b1bd8b0ea.jpg'],['فواحة اروما دفيوزر أسود',85,'0183fc65-ea5e-4e55-9bb9-4b308077ce14.jpg'],['زيت فواحة 70 مل',40.25,'2d1d5599-f472-476f-a553-924ab80f06f0.jpeg'],['فواحة سيراميك',98,'31999f5c-7b4e-4ad6-ac35-1185e27cfefe.jpg'],['فواحة أعواد ورود (1)',115,'b4a402b2-9422-4f18-91bb-b049e0b03228.jpeg'],['فواحة تعليق سيراميك',28.75,'0732c208-696d-4349-be43-741cba9dbdc9.jpg'],['فواحة سيارة',69,'38dd1866-5814-41d0-a059-04a0e5fa48d4.jpeg'],['فواحة أعواد ورود (2)',115,'b78ad718-252d-4c22-98d8-7752b4f0d245.jpg']]);
 add('care','care',[
- ['5 كريمات لليدين',45,'15c9041b-f544-40e9-b757-cb079431f2f9.jpg']]);
+ ['5 كريمات لليدين',45,'15c9041b-f544-40e9-b757-cb079431f2f9.jpg',{old:150.01}]]);
 add('royal','royal',[
  ['مبخرة ملكية مع ربع تولة',180,'a24d71a3-9fa6-43ff-ba9e-b712bc742342.jpeg'],['مبخرة ملكية',172.5,'d27754d3-1a8c-4b49-b5e8-b9d7d1723dc9.jpeg']]);
+add('sale','perfume',[
+ ['مجموعة سجى | Saja perfumes',199.01,'3dcc5890-dd50-4dce-b64b-0b2d52e35ee4.jpeg',{old:598}],['عطر فرنسي 12 مل',29,'a08363d5-82ec-4a82-8d72-9b6b27a55aae.jpeg',{old:34.5,size:12}]]);
 const scentOf=n=>/عنبر/.test(n)?'عنبر':/مسك/.test(n)?'مسك':/ورد|روز/.test(n)?'ورد':/عود/.test(n)?'عود':'';
 P.forEach(p=>{p.scent=scentOf(p.name)});
 
@@ -486,6 +490,10 @@ function home(){
 
   <section class="blk wrap" aria-labelledby="trh"><div class="head"><h2 id="trh">الأعلى تقييمًا</h2><a href="#/shop?cat=perfume">عرض كل المنتجات ←</a></div>
     <div class="pgrid">${[['ليدي عنبر',4],['ناتشورال عنبر',4],['بخور رساس',3],['ارينا',2]].map(([n,c])=>{const p=P.find(x=>x.name===n);return cardClean(Object.assign({},p,{reviews:c,oneplus:true}))}).join('')}</div></section>
+
+  <section class="blk wrap" aria-labelledby="svh"><div class="head"><div><h2 id="svh">وفّر حتى 70%</h2><p class="sub">تخفيضات على 4 منتجات مختارة من رساس، والأسعار شاملة الضريبة.</p></div><a href="#/shop?sort=disc">عرض كل المنتجات ←</a></div>
+    <div class="pgrid">${['5 كريمات لليدين','مجموعة سجى | Saja perfumes','ربع تولة','عطر فرنسي 12 مل'].map(n=>cardClean(P.find(x=>x.name===n))).join('')}</div></section>
+
 
 
   <section class="blk wrap" aria-labelledby="vh"><h2 id="vh" class="sr">التقسيط والتوصيل والاستبدال</h2>
