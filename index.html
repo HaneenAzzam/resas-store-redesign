@@ -527,14 +527,15 @@ function home(){
     <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
       <div class="svc"><a href="#/">خيارات الدفع والتوصيل <span>←</span></a><a href="#/">سياسة الاستبدال والاسترجاع <span>←</span></a><a href="#/">تواصل معنا <span>←</span></a></div></div></section>
 
+  <section class="blk wrap" aria-labelledby="ih"><div class="head"><h2 id="ih">البخور والعود</h2><a href="#/shop?cat=incense">عرض الكل ←</a></div>
+    <div class="pgrid">${P.filter(p=>p.cat==='incense').slice(0,4).map(cardClean).join('')}</div></section>
+
   <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
     <div class="revs">${[['فهد','عطور مميزه وثباتها قوي'],['roaa tamer','سرعة بالتوصيل ماشاء الله يعطيكم العافية'],['AMEERA ALHARBI','العطور ماشاء الله تجنن الله يبارك لكم في رزقكم']].map(([n,t])=>`<figure class="rev"><blockquote><p>${t}</p></blockquote><small>${n}</small></figure>`).join('')}</div></section>
 
   <section class="blk wrap" aria-labelledby="dh"><div class="head"><h2 id="dh">توزيعات لمناسباتك</h2><a href="#/shop?cat=dist">كل التوزيعات ←</a></div>
     <div class="dist">${dist.map(p=>`<div class="drow"><img src="${IMG(p.img,300)}" alt="${esc(p.name)}" width="96" height="96" loading="lazy"><div><h3>${esc(p.name)}</h3><div class="price"><b>${fmt(p.price)}</b>${p.pcs?`<small>≈ ${fmt(p.price/p.pcs)} للحبة</small>`:''}</div></div><a class="btn btn-sm ${p.opts?'btn-ink':'btn-gold'} go" href="#/p/${p.id}">${p.opts?'اختر الخيارات':'التفاصيل'}</a></div>`).join('')}</div></section>
 
-  <section class="blk wrap" aria-labelledby="ih"><div class="head"><h2 id="ih">البخور والعود</h2><a href="#/shop?cat=incense">عرض الكل ←</a></div>
-    <div class="grid">${P.filter(p=>p.cat==='incense').slice(0,4).map(card).join('')}</div></section>
 
   <section class="wrap about" aria-labelledby="abh">
     <div class="ph"><img src="img/14.jpg" alt="" width="1280" height="1600" loading="lazy"></div>
