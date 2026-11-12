@@ -122,7 +122,7 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .instband .svc a{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff}
 .instband .svc a:hover{background:rgba(255,255,255,.14)}
 @media(min-width:1024px){.instband{grid-template-columns:1fr 2fr}}
-.about{display:grid;gap:24px;align-items:center;padding-block:var(--sec) 0}
+.about{display:grid;gap:24px;align-items:center;padding-block:0}
 .about .ph{border-radius:var(--r-card);overflow:hidden;background:var(--surface);aspect-ratio:4/5;max-width:560px;width:100%;justify-self:center}
 .about .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
 .about:hover .ph img{transform:scale(1.03)}
@@ -530,6 +530,13 @@ function home(){
   <section class="blk wrap" aria-labelledby="ih"><div class="head"><h2 id="ih">البخور والعود</h2><a href="#/shop?cat=incense">عرض الكل ←</a></div>
     <div class="pgrid">${P.filter(p=>p.cat==='incense').slice(0,4).map(cardClean).join('')}</div></section>
 
+  <section class="wrap about" aria-labelledby="abh">
+    <div class="ph"><img src="img/about.webp" alt="عطر مسك المدينة من رساس في علبته" width="570" height="715" loading="lazy"></div>
+    <div><h2 id="abh">ثمانية عشر عامًا في صناعة الرائحة</h2>
+      <p>نشأت رساس في المملكة العربية السعودية عام 2008، لتقدّم عطورًا فرنسية وشرقية بأسلوب دافئ وأنيق، وبخورًا وعودًا من أجود الأنواع.</p>
+      <a class="more" href="#/shop?cat=perfume">تسوّق عطور رساس <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a></div>
+  </section>
+
   <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
     <div class="revs">${[['فهد','عطور مميزه وثباتها قوي'],['roaa tamer','سرعة بالتوصيل ماشاء الله يعطيكم العافية'],['AMEERA ALHARBI','العطور ماشاء الله تجنن الله يبارك لكم في رزقكم']].map(([n,t])=>`<figure class="rev"><blockquote><p>${t}</p></blockquote><small>${n}</small></figure>`).join('')}</div></section>
 
@@ -537,12 +544,6 @@ function home(){
     <div class="dist">${dist.map(p=>`<div class="drow"><img src="${IMG(p.img,300)}" alt="${esc(p.name)}" width="96" height="96" loading="lazy"><div><h3>${esc(p.name)}</h3><div class="price"><b>${fmt(p.price)}</b>${p.pcs?`<small>≈ ${fmt(p.price/p.pcs)} للحبة</small>`:''}</div></div><a class="btn btn-sm ${p.opts?'btn-ink':'btn-gold'} go" href="#/p/${p.id}">${p.opts?'اختر الخيارات':'التفاصيل'}</a></div>`).join('')}</div></section>
 
 
-  <section class="wrap about" aria-labelledby="abh">
-    <div class="ph"><img src="img/about.webp" alt="عطر مسك المدينة من رساس في علبته" width="570" height="715" loading="lazy"></div>
-    <div><h2 id="abh">ثمانية عشر عامًا في صناعة الرائحة</h2>
-      <p>نشأت رساس في المملكة العربية السعودية عام 2008، لتقدّم عطورًا فرنسية وشرقية بأسلوب دافئ وأنيق، وبخورًا وعودًا من أجود الأنواع.</p>
-      <a class="more" href="#/shop?cat=perfume">تسوّق عطور رساس <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a></div>
-  </section>
 
   <section class="cta" aria-labelledby="ch"><div class="wrap in"><div><h2 id="ch">تجهّز لمناسبتك؟</h2><p>باقات توزيعات عطور ورقائق عود جاهزة، وأسعار الحبة ظاهرة قبل الطلب.</p></div>
     <div class="btns"><a class="btn btn-gold" href="#/shop?cat=dist">تصفّح التوزيعات</a><a class="btn btn-line" href="#/shop?cat=perfume&col=special">العطور الخاصة</a></div></div></section>`;
