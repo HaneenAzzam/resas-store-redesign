@@ -190,15 +190,6 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .sk i:nth-child(1){aspect-ratio:1} .sk i:nth-child(2){height:16px} .sk i:nth-child(3){height:20px;width:50%} .sk i:nth-child(4){height:44px}
 @keyframes sh{to{background-position:-200% 0}}
 
-.scents{display:grid;gap:12px}
-.scent{position:relative;border-radius:var(--r-panel);padding:24px;min-height:220px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s var(--ease)}
-.scent:hover{transform:translateY(-3px)}
-.scent b{font-size:clamp(30px,3.4vw,40px);font-weight:800;line-height:1.1}
-.scent span{font-size:13px;font-weight:700}
-.scent img{position:absolute;inset-inline-end:-6%;bottom:-6%;width:46%;mix-blend-mode:multiply;transform:rotate(-6deg);transition:transform .4s var(--ease)}
-.scent:hover img{transform:rotate(-2deg) scale(1.05)}
-.note{font-size:14px;color:var(--muted);margin-top:12px}
-
 .dist{display:grid;gap:12px}
 .drow{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;transition:border-color var(--t)}
 .drow:hover{border-color:var(--line-h)}
@@ -303,7 +294,6 @@ footer .legal{margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255
 
 /* ============ لوحي ≥768 ============ */
 @media(min-width:768px){
-  .scents{grid-template-columns:repeat(3,1fr);gap:16px}
   .dist{grid-template-columns:repeat(2,1fr);gap:16px}
   .revs{grid-template-columns:repeat(3,1fr);gap:16px}
   .svc{grid-template-columns:repeat(3,1fr);gap:16px}
@@ -323,7 +313,6 @@ footer .legal{margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255
   .search{order:0;flex:0 1 300px;min-width:160px;margin-inline-start:0}
   .search input{height:43px}
   .deskonly{display:grid}
-  .scent{min-height:300px;padding:32px}
   .dist{grid-template-columns:repeat(3,1fr)}
   .drow{grid-template-columns:96px 1fr auto;padding:16px}
   .drow img{width:96px;height:96px}
@@ -480,7 +469,6 @@ function tabGrid(col){return `<div class="pgrid">${P.filter(p=>p.col===col).slic
 function home(){
   const arina=P.find(p=>p.name==='ارينا');
   const cnt=k=>P.filter(p=>p.cat===k).length;
-  const sc=[['عنبر','#EAD9A6'],['مسك','#E7E2D6'],['ورد','#EBD5D1']].map(([s,bg])=>{const l=P.filter(p=>p.scent===s&&p.cat==='perfume');return {s,bg,n:l.length,img:l[0]}});
   const dist=P.filter(p=>p.cat==='dist'&&p.pcs).concat(P.filter(p=>p.name==='ربع تولة فاخرة'||p.name==='عطر 8 مل')).slice(0,6);
   return `
   <section class="hero rise" aria-labelledby="h1">
@@ -495,12 +483,8 @@ function home(){
     <div class="tabs" role="tablist" aria-label="مجموعات العطور">${TABS.map(([k,l],i)=>`<button class="chip" role="tab" id="tab-${k}" data-tab-k="${k}" aria-selected="${i==0}" tabindex="${i==0?0:-1}">${l}</button>`).join('')}</div>
     <div class="tabpanel" id="tabPanel" role="tabpanel" aria-live="polite" aria-labelledby="tab-special">${tabGrid('special')}</div></section>
 
-  <section class="blk wrap" id="scents" aria-labelledby="sch"><div class="head"><h2 id="sch">تسوّق حسب الرائحة</h2></div>
-    <div class="scents">${sc.map(x=>`<a class="scent" style="background:${x.bg}" href="#/shop?cat=perfume&scent=${x.s}"><b>${x.s}</b><span>${x.n} عطرًا ←</span>${x.img?`<img src="${IMG(x.img.img,400)}" alt="" loading="lazy">`:''}</a>`).join('')}</div>
-    <p class="note">المجموعات مبنية على الرائحة الظاهرة في اسم العطر حتى تتوفر بيانات النوتات.</p></section>
-
   <section class="blk wrap" aria-labelledby="vh"><h2 id="vh" class="sr">التقسيط والتوصيل والاستبدال</h2>
-    <div class="instband"><div><h3>قسّمها على 5 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
+    <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
       <div class="svc"><a href="#/">خيارات الدفع والتوصيل <span>←</span></a><a href="#/">سياسة الاستبدال والاسترجاع <span>←</span></a><a href="#/">تواصل معنا <span>←</span></a></div></div></section>
 
   <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
