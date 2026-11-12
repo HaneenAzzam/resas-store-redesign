@@ -199,15 +199,6 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .scent:hover img{transform:rotate(-2deg) scale(1.05)}
 .note{font-size:14px;color:var(--muted);margin-top:12px}
 
-.deals{display:grid;gap:12px}
-.deal{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;transition:border-color var(--t)}
-.deal:hover{border-color:var(--line-h)}
-.deal .ph{width:100%;aspect-ratio:1;background:var(--surface);border-radius:var(--r-field);display:grid;place-items:center;position:relative}
-.deal img{width:88%;mix-blend-mode:multiply}
-.deal h3{font-size:16px;margin-bottom:4px}
-.deal .btn{min-height:44px;margin-top:10px}
-.deal .why{font-size:14px;color:var(--muted)}
-
 .dist{display:grid;gap:12px}
 .drow{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);padding:16px;transition:border-color var(--t)}
 .drow:hover{border-color:var(--line-h)}
@@ -313,7 +304,6 @@ footer .legal{margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255
 /* ============ لوحي ≥768 ============ */
 @media(min-width:768px){
   .scents{grid-template-columns:repeat(3,1fr);gap:16px}
-  .deals{grid-template-columns:1fr 1fr;gap:16px}
   .dist{grid-template-columns:repeat(2,1fr);gap:16px}
   .revs{grid-template-columns:repeat(3,1fr);gap:16px}
   .svc{grid-template-columns:repeat(3,1fr);gap:16px}
@@ -334,7 +324,6 @@ footer .legal{margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255
   .search input{height:43px}
   .deskonly{display:grid}
   .scent{min-height:300px;padding:32px}
-  .deal{grid-template-columns:160px 1fr;padding:20px}
   .dist{grid-template-columns:repeat(3,1fr)}
   .drow{grid-template-columns:96px 1fr auto;padding:16px}
   .drow img{width:96px;height:96px}
@@ -489,7 +478,7 @@ const skel=n=>Array.from({length:n},()=>'<div class="sk" aria-hidden="true"><i><
 const TABS=[['special','عطور خاصة'],['feat','عطور مميزة'],['c100','كلاسيك 100 مل'],['c50','كلاسيك 50 مل']];
 function tabGrid(col){return `<div class="pgrid">${P.filter(p=>p.col===col).slice(0,8).map(cardClean).join('')}</div>`}
 function home(){
-  const arina=P.find(p=>p.name==='ارينا'), tolla=P.find(p=>p.name==='ربع تولة');
+  const arina=P.find(p=>p.name==='ارينا');
   const cnt=k=>P.filter(p=>p.cat===k).length;
   const sc=[['عنبر','#EAD9A6'],['مسك','#E7E2D6'],['ورد','#EBD5D1']].map(([s,bg])=>{const l=P.filter(p=>p.scent===s&&p.cat==='perfume');return {s,bg,n:l.length,img:l[0]}});
   const dist=P.filter(p=>p.cat==='dist'&&p.pcs).concat(P.filter(p=>p.name==='ربع تولة فاخرة'||p.name==='عطر 8 مل')).slice(0,6);
@@ -501,9 +490,6 @@ function home(){
 
   <section class="rc-band" aria-labelledby="rch"><div class="wrap"><h2 id="rch">تسوّق حسب القسم</h2>
     <div class="rcats">${[['perfume','عطور','سوفاج'],['incense','البخور والعود','مبخرة اعواد العود'],['dist','توزيعات','ربع تولة فاخرة'],['air','عطور جو ومفارش','معطر جو قيرل'],['diff','فواحات أعواد','فواحة سيراميك'],['care','منتجات عناية','5 كريمات لليدين']].map(([k,n,pn])=>`<a class="rcat" href="#/shop?cat=${k}"><span class="c"><img src="${IMG(P.find(p=>p.name===pn).img,400)}" alt="" loading="lazy"></span><b>${n}</b></a>`).join('')}</div></div></section>
-
-  <section class="blk wrap" aria-labelledby="dlh"><div class="head"><h2 id="dlh">عروض قائمة الآن</h2></div>
-    <div class="deals">${[arina,tolla].map(p=>`<article class="deal"><a class="ph" href="#/p/${p.id}"><span class="badge sale">خصم ${disc(p)}%</span>${imgTag(p,400)}</a><div><h3><a href="#/p/${p.id}">${esc(p.name)}</a></h3><div class="why">${meta(p)}</div><div class="price"><b>${fmt(p.price)}</b><s>${fmt(p.old)}</s></div>${p.opts?`<a class="btn btn-ink" href="#/p/${p.id}">اختر الخيارات</a>`:`<button class="btn btn-gold" data-add="${p.id}">أضف إلى السلة</button>`}</div></article>`).join('')}</div></section>
 
   <section class="blk wrap" aria-labelledby="th"><div class="head"><h2 id="th">اختر من عطور رساس</h2><a href="#/shop?cat=perfume">عرض الكل ←</a></div>
     <div class="tabs" role="tablist" aria-label="مجموعات العطور">${TABS.map(([k,l],i)=>`<button class="chip" role="tab" id="tab-${k}" data-tab-k="${k}" aria-selected="${i==0}" tabindex="${i==0?0:-1}">${l}</button>`).join('')}</div>
