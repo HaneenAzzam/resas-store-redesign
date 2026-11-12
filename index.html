@@ -537,11 +537,11 @@ function home(){
       <a class="more" href="#/shop?cat=perfume">تسوّق عطور رساس <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a></div>
   </section>
 
-  <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
-    <div class="revs">${[['فهد','عطور مميزه وثباتها قوي'],['roaa tamer','سرعة بالتوصيل ماشاء الله يعطيكم العافية'],['AMEERA ALHARBI','العطور ماشاء الله تجنن الله يبارك لكم في رزقكم']].map(([n,t])=>`<figure class="rev"><blockquote><p>${t}</p></blockquote><small>${n}</small></figure>`).join('')}</div></section>
-
   <section class="blk wrap" aria-labelledby="dh"><div class="head"><h2 id="dh">توزيعات لمناسباتك</h2><a href="#/shop?cat=dist">كل التوزيعات ←</a></div>
     <div class="dist">${dist.map(p=>`<div class="drow"><img src="${IMG(p.img,300)}" alt="${esc(p.name)}" width="96" height="96" loading="lazy"><div><h3>${esc(p.name)}</h3><div class="price"><b>${fmt(p.price)}</b>${p.pcs?`<small>≈ ${fmt(p.price/p.pcs)} للحبة</small>`:''}</div></div><a class="btn btn-sm ${p.opts?'btn-ink':'btn-gold'} go" href="#/p/${p.id}">${p.opts?'اختر الخيارات':'التفاصيل'}</a></div>`).join('')}</div></section>
+
+  <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
+    <div class="revs">${[['فهد','عطور مميزه وثباتها قوي'],['roaa tamer','سرعة بالتوصيل ماشاء الله يعطيكم العافية'],['AMEERA ALHARBI','العطور ماشاء الله تجنن الله يبارك لكم في رزقكم']].map(([n,t])=>`<figure class="rev"><blockquote><p>${t}</p></blockquote><small>${n}</small></figure>`).join('')}</div></section>
 
 
 
