@@ -176,10 +176,10 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
   .distgrid{grid-template-columns:1.25fr 1fr 1fr;gap:12px}
   .dfeat{grid-row:1/3;grid-template-columns:46% 1fr;min-height:0}
 }
-.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-bottom:var(--sec)}
-.tr{display:grid;justify-items:center;gap:16px;text-align:center}
-.tr p{font-size:clamp(12px,1.3vw,16px);font-weight:700;line-height:1.5;max-width:22ch}
-.ico{position:relative;width:clamp(76px,10vw,120px);aspect-ratio:1;border-radius:50%;background:#F1E6C4;display:grid;place-items:center;animation:bob 3.4s ease-in-out infinite}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:var(--sec)}
+.tr{display:grid;justify-items:center;gap:12px;text-align:center}
+.tr p{font-size:clamp(12px,1.1vw,14px);font-weight:700;line-height:1.5;max-width:22ch}
+.ico{position:relative;width:clamp(60px,7vw,88px);aspect-ratio:1;border-radius:50%;background:#F1E6C4;display:grid;place-items:center;animation:bob 3.4s ease-in-out infinite}
 .tr:nth-child(2) .ico{animation-delay:-1.1s}.tr:nth-child(3) .ico{animation-delay:-2.2s}
 .ico svg{width:58%;height:auto;overflow:visible;fill:none;stroke:#7A5C10;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
 .ico .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--gold);opacity:0;animation:ping 2.8s ease-out infinite}
@@ -622,9 +622,6 @@ function home(){
       <a class="more" href="#/shop?cat=perfume">تسوّق عطور رساس <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a></div>
   </section>
 
-  <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
-    <div class="revs">${[['فهد','عطور مميزه وثباتها قوي'],['roaa tamer','سرعة بالتوصيل ماشاء الله يعطيكم العافية'],['AMEERA ALHARBI','العطور ماشاء الله تجنن الله يبارك لكم في رزقكم']].map(([n,t])=>`<figure class="rev"><blockquote><p>${t}</p></blockquote><small>${n}</small></figure>`).join('')}</div></section>
-
   <section class="wrap trust" aria-label="مزايا رساس">
     <div class="tr"><div class="ico"><i class="ring"></i>
       <svg viewBox="0 0 64 48" aria-hidden="true"><g class="truck"><path class="ln l1" d="M2 18h9"/><path class="ln l2" d="M5 26h8"/><path class="ln l3" d="M2 34h9"/><path class="bd" d="M14 10h26v26H14z"/><path class="bd" d="M40 18h10l8 9v9H40z"/><path class="wd" d="M44 21h6l4 5h-10z"/><g class="wh"><circle cx="23" cy="38" r="5"/><path d="M23 33v10M18 38h10"/></g><g class="wh"><circle cx="50" cy="38" r="5"/><path d="M50 33v10M45 38h10"/></g></g></svg>
@@ -635,7 +632,11 @@ function home(){
     <div class="tr"><div class="ico"><i class="ring"></i>
       <svg viewBox="0 0 64 48" aria-hidden="true"><g class="shield"><path class="sh" d="M32 3l17 6v13c0 11-7 19-17 23C22 41 15 33 15 22V9z"/><path class="ck" d="M24 24l6 6 11-12"/></g></svg>
       <b class="sp s1"></b><b class="sp s2"></b></div><p>أصلي 100% من رساس</p></div>
-  </section>`;
+  </section>
+
+  <section class="blk wrap" aria-labelledby="rh"><div class="head"><h2 id="rh">من آراء العملاء</h2></div>
+    <div class="revs">${[['فهد','عطور مميزه وثباتها قوي'],['roaa tamer','سرعة بالتوصيل ماشاء الله يعطيكم العافية'],['AMEERA ALHARBI','العطور ماشاء الله تجنن الله يبارك لكم في رزقكم']].map(([n,t])=>`<figure class="rev"><blockquote><p>${t}</p></blockquote><small>${n}</small></figure>`).join('')}</div></section>
+`;
 }
 
 const SORTS={def:'الافتراضي',pa:'السعر: الأقل أولًا',pd:'السعر: الأعلى أولًا',disc:'الأعلى خصمًا'};
