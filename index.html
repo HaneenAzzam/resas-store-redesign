@@ -100,7 +100,7 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 /* ============ الرئيسية ============ */
 .hero{display:block;padding:0}
 .banner{display:block;overflow:hidden;background:var(--surface)}
-.banner img{width:100%;height:auto;aspect-ratio:1600/700;max-height:640px;object-fit:cover;object-position:center 58%;transition:transform .6s var(--ease)}
+.banner img{width:100%;height:auto;aspect-ratio:1600/687;max-height:680px;object-fit:cover;object-position:center;transition:transform .6s var(--ease)}
 .banner:hover img{transform:scale(1.02)}
 
 .rc-band{background:#F6F4EE;padding-block:clamp(28px,4vw,48px);margin-bottom:var(--sec)}
@@ -368,7 +368,7 @@ footer .legal{margin-top:32px;padding-top:16px;border-top:1px solid rgba(255,255
 </style>
 </head>
 <body>
-<div class="announce">عطر <b>أرينا</b> بـ 149 ريال بدل 230، شامل الشحن والضريبة</div>
+<div class="announce">عرض يوم العزاب <b>11/11</b>: 1+1 مجانًا على منتجات مختارة</div>
 
 <header class="top">
   <div class="wrap">
@@ -504,7 +504,7 @@ function home(){
   const dist=P.filter(p=>p.cat==='dist'&&p.pcs).concat(P.filter(p=>p.name==='ربع تولة فاخرة'||p.name==='عطر 8 مل')).slice(0,6);
   return `
   <section class="hero rise" aria-labelledby="h1">
-    <a class="banner" href="#/shop?cat=perfume" aria-label="تسوّق عطور رساس"><img src="img/p1062769.jpg" alt="" width="1600" height="900"></a>
+    <a class="banner" href="#/shop?cat=perfume" aria-label="عرض يوم العزاب 1+1 مجانًا"><img src="img/offer-banner.webp" alt="عرض يوم العزاب 11:11: 1+1 مجانًا على منتجات مختارة، الأقل سعرًا مجانًا، لمدة 3 أيام فقط" width="1600" height="687"></a>
     <h1 id="h1" class="sr">عطور فرنسية وشرقية منذ 2008</h1>
   </section>
 
