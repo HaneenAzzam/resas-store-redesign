@@ -466,7 +466,7 @@ const skel=n=>Array.from({length:n},()=>'<div class="sk" aria-hidden="true"><i><
 
 /* ============ الرئيسية: ترتيب مستوحى من المرجع ============ */
 const TABS=[['special','عطور خاصة'],['feat','عطور مميزة'],['c100','كلاسيك 100 مل'],['c50','كلاسيك 50 مل']];
-function tabGrid(col){return `<div class="pgrid">${P.filter(p=>p.col===col).slice(0,8).map(cardClean).join('')}</div>`}
+function tabGrid(col){return `<div class="pgrid">${P.filter(p=>p.col===col).slice(0,8).map(p=>cardClean(Object.assign({},p,{oneplus:true}))).join('')}</div>`}
 function home(){
   const arina=P.find(p=>p.name==='ارينا');
   const cnt=k=>P.filter(p=>p.cat===k).length;
