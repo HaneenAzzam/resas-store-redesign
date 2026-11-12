@@ -144,7 +144,7 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .pc:hover .ph img{transform:scale(1.05)}
 .pc .tag{position:absolute;top:10px;inset-inline-start:10px;z-index:1;background:#ECE9E2;color:var(--ink);font-size:12px;padding:3px 10px;border-radius:4px}
 .pc .tag.sale{background:var(--danger);color:#fff}
-.distband{padding-block:0}
+.distband{padding-block:var(--sec) 0}
 .distpanel{background:var(--ink);color:#fff;border-radius:var(--r-panel);padding:clamp(20px,3vw,36px)}
 .distband .head{margin-bottom:clamp(14px,2vw,20px)}
 .distband .head a{color:#E2C98B}
@@ -221,6 +221,29 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 .gi img{width:100%;height:100%;object-fit:cover}
 .gi:hover,.gi:focus-visible{transform:scale(1.07);z-index:2;box-shadow:0 14px 24px -8px rgba(0,0,0,.28)}
 @media(min-width:768px){.pgal-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
+.catblock{padding-top:var(--sec)}
+.cbanner{position:relative;display:block;border-radius:var(--r-panel);overflow:hidden;background:var(--surface);aspect-ratio:16/9}
+.cbanner img{width:100%;height:100%;object-fit:cover;object-position:center 45%;transition:transform .7s var(--ease)}
+.cbanner:hover img{transform:scale(1.04)}
+.cb-chip{position:absolute;inset-inline-end:14px;bottom:14px;background:rgba(255,255,255,.95);border-radius:var(--r-card);padding:10px 14px;display:flex;align-items:center;gap:14px}
+.cb-chip b{display:block;font-size:clamp(16px,1.8vw,22px);line-height:1.3}
+.cb-chip small{display:block;color:var(--muted);font-size:12px}
+.cb-go{background:var(--ink);color:#fff;border-radius:var(--r-btn);padding:9px 16px;font-size:13px;font-weight:700;transition:background-color var(--t)}
+.cbanner:hover .cb-go{background:var(--gold-d)}
+.cbhead{text-align:center;margin:clamp(22px,3vw,32px) 0 clamp(16px,2vw,24px)}
+.cbhead h2{display:inline-block;border-bottom:2px solid var(--gold);padding-bottom:6px;font-size:clamp(19px,2vw,24px)}
+.pcar{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-bottom:4px}
+.pcar::-webkit-scrollbar{display:none}
+.pcar>*{flex:0 0 46%;scroll-snap-align:start}
+.cbmore{text-align:center;margin-top:22px}
+.cbmore .btn{min-height:44px}
+@media(min-width:768px){
+  .cbanner{aspect-ratio:16/6}
+  .pcar{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;overflow:visible}
+  .pcar>*{flex:none}
+  .pcar.few{grid-template-columns:repeat(2,minmax(0,1fr));max-width:560px;margin-inline:auto}
+}
+@media(min-width:1024px){.pcar{gap:32px}.cb-chip{inset-inline-end:20px;bottom:20px;padding:14px 18px}}
 .saleblk{display:grid;gap:12px}
 .salepanel{background:var(--ink);color:#fff;border-radius:var(--r-panel);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;justify-content:center;gap:10px}
 .salepanel h2{display:flex;flex-direction:column;line-height:1.1;max-width:none}
@@ -575,6 +598,14 @@ function distCard(p){
   ${p.pcs?`<div class="pp">≈ ${fmt(p.price/p.pcs)} للحبة</div>`:'<div class="pp">&nbsp;</div>'}
   <div class="row"><span class="tot"><b>${fmt(p.price)}</b></span>${distAct(p,'btn-light')}</div></div></article>`;
 }
+function catBlock(k,bannerName){
+  const c=CATS.find(x=>x.k===k);const all=P.filter(p=>p.cat===k);const list=all.slice(0,4);const bp=P.find(p=>p.name===bannerName);
+  return `<section class="wrap catblock" aria-labelledby="cb-${k}">
+    <a class="cbanner" href="#/shop?cat=${k}" aria-label="${c.n}"><img src="${IMG(bp.img,1200)}" alt="" loading="lazy"><span class="cb-chip"><span><b>${c.n}</b><small>${all.length} ${all.length>2?'منتجات':'منتجان'}</small></span><span class="cb-go">تسوّق الآن</span></span></a>
+    <div class="cbhead"><h2 id="cb-${k}">${c.n}</h2></div>
+    <div class="pcar${list.length<4?' few':''}">${list.map(cardClean).join('')}</div>
+    <div class="cbmore"><a class="btn btn-ghost" href="#/shop?cat=${k}">عرض كل ${c.n}</a></div></section>`;
+}
 const skel=n=>Array.from({length:n},()=>'<div class="sk" aria-hidden="true"><i></i><i></i><i></i><i></i></div>').join('');
 
 /* ============ الرئيسية: ترتيب مستوحى من المرجع ============ */
@@ -611,8 +642,10 @@ function home(){
     <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
       <div class="svc"><a href="#/">خيارات الدفع والتوصيل <span>←</span></a><a href="#/">سياسة الاستبدال والاسترجاع <span>←</span></a><a href="#/">تواصل معنا <span>←</span></a></div></div></section>
 
-  <section class="blk wrap" aria-labelledby="ih"><div class="head"><h2 id="ih">البخور والعود</h2><a href="#/shop?cat=incense">عرض الكل ←</a></div>
-    <div class="pgrid">${P.filter(p=>p.cat==='incense').slice(0,4).map(cardClean).join('')}</div></section>
+  ${catBlock('incense','عود كمبودي')}
+  ${catBlock('diff','فواحة سيراميك')}
+  ${catBlock('air','عرض خاص 3 معطرات جو ومفارش')}
+  ${catBlock('royal','مبخرة ملكية')}
 
 
   <section class="distband wrap" aria-labelledby="dh"><div class="distpanel">
