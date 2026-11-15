@@ -223,6 +223,7 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);bac
 @media(min-width:768px){.pgal-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
 .catblock{padding-top:var(--sec)}
 .cbanner{position:relative;display:block;border-radius:var(--r-panel);overflow:hidden;background:var(--surface);aspect-ratio:16/9}
+.cbanner.baked,.cbanner.baked img{aspect-ratio:8/3}
 .cbanner img{width:100%;height:100%;object-fit:cover;object-position:center 45%;transition:transform .7s var(--ease)}
 .cbanner:hover img{transform:scale(1.04)}
 .cb-chip{position:absolute;inset-inline-end:14px;bottom:14px;background:rgba(255,255,255,.95);border-radius:var(--r-card);padding:10px 14px;display:flex;align-items:center;gap:14px}
@@ -598,10 +599,10 @@ function distCard(p){
   ${p.pcs?`<div class="pp">≈ ${fmt(p.price/p.pcs)} للحبة</div>`:'<div class="pp">&nbsp;</div>'}
   <div class="row"><span class="tot"><b>${fmt(p.price)}</b></span>${distAct(p,'btn-light')}</div></div></article>`;
 }
-function catBlock(k,bannerName){
+function catBlock(k,bannerName,designed){
   const c=CATS.find(x=>x.k===k);const all=P.filter(p=>p.cat===k);const list=all.slice(0,4);const bp=P.find(p=>p.name===bannerName);
   return `<section class="wrap catblock" aria-labelledby="cb-${k}">
-    <a class="cbanner" href="#/shop?cat=${k}" aria-label="${c.n}"><img src="${IMG(bp.img,1200)}" alt="" loading="lazy"><span class="cb-chip"><span><b>${c.n}</b><small>${all.length} ${all.length>2?'منتجات':'منتجان'}</small></span><span class="cb-go">تسوّق الآن</span></span></a>
+    <a class="cbanner${designed?' baked':''}" href="#/shop?cat=${k}" aria-label="${c.n}">${designed?`<img src="${designed}" alt="${c.n} من رساس: عود كمبودي وكلمنتان وتايقر ورقائق فيتنامي" width="1600" height="600" loading="lazy">`:`<img src="${IMG(bp.img,1200)}" alt="" loading="lazy">`}${designed?'':`<span class="cb-chip"><span><b>${c.n}</b><small>${all.length} ${all.length>2?'منتجات':'منتجان'}</small></span><span class="cb-go">تسوّق الآن</span></span>`}</a>
     <div class="cbhead"><h2 id="cb-${k}">${c.n}</h2></div>
     <div class="pcar${list.length<4?' few':''}">${list.map(cardClean).join('')}</div>
     <div class="cbmore"><a class="btn btn-ghost" href="#/shop?cat=${k}">عرض كل ${c.n}</a></div></section>`;
@@ -642,7 +643,7 @@ function home(){
     <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
       <div class="svc"><a href="#/">خيارات الدفع والتوصيل <span>←</span></a><a href="#/">سياسة الاستبدال والاسترجاع <span>←</span></a><a href="#/">تواصل معنا <span>←</span></a></div></div></section>
 
-  ${catBlock('incense','عود كمبودي')}
+  ${catBlock('incense','عود كمبودي','img/banners/incense.jpg')}
   ${catBlock('diff','فواحة سيراميك')}
   ${catBlock('air','عرض خاص 3 معطرات جو ومفارش')}
 
