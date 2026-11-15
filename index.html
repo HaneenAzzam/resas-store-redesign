@@ -602,7 +602,7 @@ function distCard(p){
 function catBlock(k,bannerName,designed){
   const c=CATS.find(x=>x.k===k);const all=P.filter(p=>p.cat===k);const list=all.slice(0,4);const bp=P.find(p=>p.name===bannerName);
   return `<section class="wrap catblock" aria-labelledby="cb-${k}">
-    <a class="cbanner${designed?' baked':''}" href="#/shop?cat=${k}" aria-label="${c.n}">${designed?`<img src="${designed}" alt="${c.n} من رساس: عود كمبودي وكلمنتان وتايقر ورقائق فيتنامي" width="1600" height="600" loading="lazy">`:`<img src="${IMG(bp.img,1200)}" alt="" loading="lazy">`}${designed?'':`<span class="cb-chip"><span><b>${c.n}</b><small>${all.length} ${all.length>2?'منتجات':'منتجان'}</small></span><span class="cb-go">تسوّق الآن</span></span>`}</a>
+    <a class="cbanner${designed?' baked':''}" href="#/shop?cat=${k}" aria-label="${c.n}">${designed?`<img src="${designed}" alt="${c.n} من رساس" width="1600" height="600" loading="lazy">`:`<img src="${IMG(bp.img,1200)}" alt="" loading="lazy">`}${designed?'':`<span class="cb-chip"><span><b>${c.n}</b><small>${all.length} ${all.length>2?'منتجات':'منتجان'}</small></span><span class="cb-go">تسوّق الآن</span></span>`}</a>
     <div class="cbhead"><h2 id="cb-${k}">${c.n}</h2></div>
     <div class="pcar${list.length<4?' few':''}">${list.map(cardClean).join('')}</div>
     <div class="cbmore"><a class="btn btn-ghost" href="#/shop?cat=${k}">عرض كل ${c.n}</a></div></section>`;
@@ -644,7 +644,7 @@ function home(){
       <div class="svc"><a href="#/">خيارات الدفع والتوصيل <span>←</span></a><a href="#/">سياسة الاستبدال والاسترجاع <span>←</span></a><a href="#/">تواصل معنا <span>←</span></a></div></div></section>
 
   ${catBlock('incense','عود كمبودي','img/banners/incense.jpg')}
-  ${catBlock('diff','فواحة سيراميك')}
+  ${catBlock('diff','فواحة سيراميك','img/banners/diff.jpg')}
   ${catBlock('air','عرض خاص 3 معطرات جو ومفارش')}
 
 
