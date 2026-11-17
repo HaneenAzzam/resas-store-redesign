@@ -611,7 +611,7 @@ const skel=n=>Array.from({length:n},()=>'<div class="sk" aria-hidden="true"><i><
 
 /* ============ الرئيسية: ترتيب مستوحى من المرجع ============ */
 const TABS=[['special','عطور خاصة'],['feat','عطور مميزة'],['c100','كلاسيك 100 مل'],['c50','كلاسيك 50 مل']];
-function tabGrid(col){return `<div class="pgrid">${P.filter(p=>p.col===col).slice(0,8).map(p=>cardClean(Object.assign({},p,{oneplus:true}))).join('')}</div>`}
+function tabGrid(col){return `<div class="pgrid">${P.filter(p=>p.col===col).slice(0,4).map(p=>cardClean(Object.assign({},p,{oneplus:true}))).join('')}</div>`}
 function home(){
   const arina=P.find(p=>p.name==='ارينا');
   const cnt=k=>P.filter(p=>p.cat===k).length;
@@ -625,10 +625,6 @@ function home(){
   <section class="rc-band" aria-labelledby="rch"><div class="wrap"><h2 id="rch">تسوّق حسب القسم</h2>
     <div class="rcats">${[['perfume','عطور','سوفاج'],['incense','البخور والعود','مبخرة اعواد العود'],['dist','توزيعات','ربع تولة فاخرة'],['air','عطور جو ومفارش','معطر جو قيرل'],['diff','فواحات أعواد','فواحة سيراميك'],['care','منتجات عناية','5 كريمات لليدين']].map(([k,n,pn])=>`<a class="rcat" href="#/shop?cat=${k}"><span class="c"><img src="${IMG(P.find(p=>p.name===pn).img,400)}" alt="" loading="lazy"></span><b>${n}</b></a>`).join('')}</div></div></section>
 
-  <section class="blk wrap" aria-labelledby="th"><div class="head"><h2 id="th">اختر من عطور رساس</h2><a href="#/shop?cat=perfume">عرض الكل ←</a></div>
-    <div class="tabs" role="tablist" aria-label="مجموعات العطور">${TABS.map(([k,l],i)=>`<button class="chip" role="tab" id="tab-${k}" data-tab-k="${k}" aria-selected="${i==0}" tabindex="${i==0?0:-1}">${l}</button>`).join('')}</div>
-    <div class="tabpanel" id="tabPanel" role="tabpanel" aria-live="polite" aria-labelledby="tab-special">${tabGrid('special')}</div></section>
-
   <section class="blk wrap" aria-labelledby="trh"><div class="head"><h2 id="trh">الأعلى تقييمًا</h2><a href="#/shop?cat=perfume">عرض كل المنتجات ←</a></div>
     <div class="pgrid">${[['ليدي عنبر',4],['ناتشورال عنبر',4],['بخور رساس',3],['ارينا',2]].map(([n,c])=>{const p=P.find(x=>x.name===n);return cardClean(Object.assign({},p,{reviews:c,oneplus:true}))}).join('')}</div></section>
 
@@ -637,11 +633,15 @@ function home(){
     <div class="salegrid">${['5 كريمات لليدين','مجموعة سجى | Saja perfumes','ربع تولة','عطر فرنسي 12 مل'].map(n=>saleRow(P.find(x=>x.name===n))).join('')}</div>
   </div></section>
 
+  <section class="blk wrap" aria-labelledby="th"><div class="head"><h2 id="th">اختر من عطور رساس</h2><a href="#/shop?cat=perfume">عرض الكل ←</a></div>
+    <div class="tabs" role="tablist" aria-label="مجموعات العطور">${TABS.map(([k,l],i)=>`<button class="chip" role="tab" id="tab-${k}" data-tab-k="${k}" aria-selected="${i==0}" tabindex="${i==0?0:-1}">${l}</button>`).join('')}</div>
+    <div class="tabpanel" id="tabPanel" role="tabpanel" aria-live="polite" aria-labelledby="tab-special">${tabGrid('special')}</div></section>
 
 
-  <section class="blk wrap" aria-labelledby="vh"><h2 id="vh" class="sr">التقسيط والتوصيل والاستبدال</h2>
-    <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد.</p></div>
-      <div class="svc"><a href="#/">خيارات الدفع والتوصيل <span>←</span></a><a href="#/">سياسة الاستبدال والاسترجاع <span>←</span></a><a href="#/">تواصل معنا <span>←</span></a></div></div></section>
+
+  <section class="blk wrap" aria-labelledby="vh"><h2 id="vh" class="sr">التقسيط والشحن</h2>
+    <div class="instband"><div><h3>قسّمها على 4 دفعات</h3><p>مع تمارا وتابي، بدون فوائد. وتكلفة الشحن تظهر لك في صفحة الدفع قبل تأكيد الطلب.</p></div>
+      <div class="svc"><a href="#/cart">اعرف تكلفة الشحن <span>←</span></a><a href="#/cart">تفاصيل التقسيط <span>←</span></a></div></div></section>
 
   ${catBlock('incense','عود كمبودي','img/banners/incense.jpg')}
   ${catBlock('diff','فواحة سيراميك','img/banners/diff.jpg')}
